@@ -76,6 +76,22 @@ npm run test:loop     # simulated runaway, zero spend
 ANTHROPIC_API_KEY=sk-... npm run test:claude   # real calls, < $0.01 spend
 ```
 
+## What's covered in v0.1 (and what's not yet)
+
+**Covered**
+
+- `client.messages.create({...})` for `@anthropic-ai/sdk`
+- `client.chat.completions.create({...})` for `openai`
+- Cost tracking for the model list in `src/index.ts` (Claude 3/3.5/4 family, GPT-4 / GPT-4o / GPT-3.5)
+
+**Not yet covered (planned for v0.2)**
+
+- **Streaming responses** — `messages.stream()` and `create({ stream: true })` return AsyncIterables that this proxy doesn't intercept. Use non-streaming for now if you need budget enforcement.
+- **Models not in the built-in price table** — calls still go through and rules like `maxCallsPerMinute` and `maxSamePromptInWindow` still fire, but `maxSpendPerHour/Day` won't trigger because cost is calculated as 0. Override prices via the `pricePerMTokens` config option in the meantime.
+- **Bedrock / Vertex / other proxied providers** — only direct Anthropic and OpenAI SDKs are tested in v0.1.
+
+If any of these matter to you, please open an issue at https://github.com/costfuse/costfuse/issues — they'll be prioritized for v0.2.
+
 ## License
 
 Apache-2.0
