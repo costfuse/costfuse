@@ -1,14 +1,32 @@
 {
   "name": "costfuse",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A fuse box for your AI bill. Drop-in budget guardrails and runaway-loop kill switch for Claude and OpenAI agents. Audit-log ready for EU AI Act compliance.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsc",
+    "prepublishOnly": "npm run build",
     "test:mock": "tsx examples/mock-test.ts",
     "test:claude": "tsx examples/claude-test.ts",
     "test:loop": "tsx examples/loop-test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/costfuse/costfuse.git"
+  },
+  "homepage": "https://github.com/costfuse/costfuse#readme",
+  "bugs": {
+    "url": "https://github.com/costfuse/costfuse/issues"
+  },
+  "author": "costfuse",
+  "engines": {
+    "node": ">=18"
   },
   "keywords": [
     "ai",
