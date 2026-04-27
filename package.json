@@ -1,11 +1,15 @@
 {
   "name": "costfuse",
-  "version": "0.1.1",
-  "description": "A fuse box for your AI bill. Drop-in budget guardrails and runaway-loop kill switch for Claude and OpenAI agents. Audit-log ready for EU AI Act compliance.",
+  "version": "0.2.0",
+  "description": "A fuse box for your AI bill. Drop-in spend protection and runaway-loop circuit breaker for Claude and OpenAI agents. Includes Python and Node SDKs plus a CLI.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "bin": {
+    "costfuse": "bin/costfuse.js"
+  },
   "files": [
     "dist",
+    "bin",
     "README.md",
     "LICENSE"
   ],
@@ -14,7 +18,8 @@
     "prepublishOnly": "npm run build",
     "test:mock": "tsx examples/mock-test.ts",
     "test:claude": "tsx examples/claude-test.ts",
-    "test:loop": "tsx examples/loop-test.ts"
+    "test:loop": "tsx examples/loop-test.ts",
+    "cli": "node bin/costfuse.js"
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "costfuse"
+version = "0.2.0"
+description = "A fuse box for your AI bill. Drop-in budget guardrails and runaway-loop kill switch for Claude and OpenAI agents."
+readme = "README.md"
+license = { text = "Apache-2.0" }
+authors = [{ name = "costfuse" }]
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries",
+]
+keywords = [
+    "ai",
+    "anthropic",
+    "claude",
+    "openai",
+    "guardrails",
+    "kill-switch",
+    "budget",
+    "tokens",
+    "agent",
+    "eu-ai-act",
+    "compliance",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["anthropic>=0.30.0", "openai>=1.0.0", "pytest>=7.0"]
+anthropic = ["anthropic>=0.30.0"]
+openai = ["openai>=1.0.0"]
+
+[project.urls]
+Homepage = "https://github.com/costfuse/costfuse"
+Repository = "https://github.com/costfuse/costfuse"
+Issues = "https://github.com/costfuse/costfuse/issues"
+
+[tool.setuptools.packages.find]
+include = ["costfuse*"]

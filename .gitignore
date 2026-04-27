@@ -5,4 +5,11 @@ dist
 *.log
 audit-*.jsonl
 examples/audit-*.jsonl
+python/examples/audit-*.jsonl
+python/**/__pycache__
+python/build
+python/dist
+python/*.egg-info
+.venv
+venv
 .DS_Store
