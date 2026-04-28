@@ -3,6 +3,8 @@
 > **A fuse box for your AI bill.** Drop-in spend protection and runaway-loop circuit breaker for AI agents.
 >
 > Wrap your Anthropic or OpenAI client → set spend caps + loop limits → costfuse kills requests *before* they spend money you didn't plan for.
+>
+> **Building AI for clients?** Jump to the [agency setup](#for-ai-agencies--consultancies-multi-client-setup) for per-client budget caps and audit logs.
 
 [![npm](https://img.shields.io/npm/v/costfuse.svg)](https://www.npmjs.com/package/costfuse)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
@@ -111,6 +113,35 @@ pip install costfuse
 ```
 
 Both have full feature parity. Same rules, same audit log format, same CLI.
+
+---
+
+## For AI agencies & consultancies (multi-client setup)
+
+If you're an agency running AI projects for multiple clients, the `actor` field separates audit logs and budgets per client. Each client gets their own:
+
+- Hard budget cap (so one client's runaway agent doesn't eat your project margin)
+- Isolated audit log (clean handoff at project end)
+- Per-client cost summary (use the CLI to generate a one-line report)
+
+```ts
+// Wrap the same client per project, tagging each call with the client ID
+const claude = wrap(new Anthropic(), {
+  maxSpendPerHour: 10.00,
+  auditLogPath: `./logs/${clientId}-audit.jsonl`,
+  actor: clientId,                        // e.g. "acme-corp"
+});
+
+await claude.messages.create({ ... });
+```
+
+At project handoff:
+
+```bash
+npx costfuse stats ./logs/acme-corp-audit.jsonl
+```
+
+You hand the client a clean usage report. They keep the audit log for their own compliance / records. Margin protection + professional handoff in one.
 
 ---
 
